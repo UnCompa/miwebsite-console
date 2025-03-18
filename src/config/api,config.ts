@@ -20,7 +20,7 @@ const onRefreshed = (token: string) => {
 
 apiBase.interceptors.request.use((config) => {
   const { decryptedAuth } = useAuthStore.getState();
-  const { token} = decryptedAuth()
+  const { token } = decryptedAuth()
   console.log('REALIZANDO PETICION...', token)
   if (token) {
     config.headers.Authorization = `Bearer ${token}`;
@@ -31,13 +31,16 @@ apiBase.interceptors.request.use((config) => {
 apiBase.interceptors.response.use(
   (response) => response, // Si la respuesta es exitosa, la devolvemos tal cual
   async (error) => {
-    console.log('REFREZCANDO PETICION...')
     const originalRequest = error.config;
-    const { setCredentials, refreshToken } = useAuthStore.getState();
+    const { decryptedAuth, setCredentials } = useAuthStore.getState();
+    const dataToken = decryptedAuth();
+    console.log('REFREZCANDO PETICION...', dataToken)
 
     if (error.response?.status === 401 && !originalRequest._retry) {
-      if (!refreshToken) {
+      if (!dataToken.refreshToken) {
         setCredentials({ token: "", refreshToken: "", errors: "Sesión expirada, inicia sesión nuevamente." });
+        // Redirigir al login si hay un error
+        window.location.href = '/login'; // O usar navigate si tienes acceso a useNavigate
         return Promise.reject(error);
       }
 
@@ -46,7 +49,7 @@ apiBase.interceptors.response.use(
 
         try {
           const { data } = await axios.post(`${API_BACKEND_URL}/auth/refreshToken?lang=es`, {
-            refreshToken,
+            refreshToken: dataToken.refreshToken,
           });
 
           setCredentials({ token: data.token, refreshToken: data.refreshToken });
@@ -55,6 +58,8 @@ apiBase.interceptors.response.use(
         } catch (refreshError) {
           setCredentials({ token: "", refreshToken: "", errors: "Sesión expirada, inicia sesión nuevamente." });
           isRefreshing = false;
+          // Redirigir al login si hay un error
+          window.location.href = '/login'; // O usar navigate si tienes acceso a useNavigate
           return Promise.reject(refreshError);
         }
       }
@@ -65,6 +70,11 @@ apiBase.interceptors.response.use(
           resolve(apiBase(originalRequest));
         });
       });
+    }
+
+    // Redirigir al login si hay un error 401
+    if (error.response?.status === 401) {
+      window.location.href = '/login'; // O usar navigate si tienes acceso a useNavigate
     }
 
     return Promise.reject(error);
