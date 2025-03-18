@@ -1,0 +1,1 @@
+export const SECRET_CONSTANTS = import.meta.env.SECRET_CONSTANTS || 'http://localhost:3000'
