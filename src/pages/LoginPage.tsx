@@ -34,7 +34,7 @@ function LoginPage() {
   return (
     <main className="min-h-screen justify-center items-center flex font-RedHatDisplay container-pattern shadow-2xl">
       <Toaster theme="dark" richColors />
-      <section className="bg-neutral-900 min-h-max min-w-96 rounded-3xl p-4 flex flex-col gap-4">
+      <section className="bg-gradient-to-br from-neutral-950 to-neutral-900 min-h-max min-w-96 rounded-3xl p-4 flex flex-col gap-4">
         <h1 className="text-center text-3xl font-light">Iniciar sesión</h1>
         <div className="flex items-center gap-2 bg-neutral-950 rounded-lg px-4 py-2 focus-within:ring-2 focus-within:ring-cyan-400/40 transition-all shadow-inner text-lg">
           <IoPerson className="text-cyan-400 text-lg" />
