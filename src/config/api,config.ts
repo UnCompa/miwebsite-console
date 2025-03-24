@@ -37,6 +37,7 @@ apiBase.interceptors.response.use(
     console.log('REFREZCANDO PETICION...', dataToken)
 
     if (error.response?.status === 401 && !originalRequest._retry) {
+      console.log('ERROR = SETEANDO ERRORES')
       if (!dataToken.refreshToken) {
         setCredentials({ token: "", refreshToken: "", errors: "Sesión expirada, inicia sesión nuevamente." });
         // Redirigir al login si hay un error
@@ -46,8 +47,9 @@ apiBase.interceptors.response.use(
 
       if (!isRefreshing) {
         isRefreshing = true;
-
+        console.log('ERROR = REFREZCANDO')
         try {
+          console.log('Llamando al endpoint...')
           const { data } = await axios.post(`${API_BACKEND_URL}/auth/refreshToken?lang=es`, {
             refreshToken: dataToken.refreshToken,
           });
@@ -71,12 +73,14 @@ apiBase.interceptors.response.use(
         });
       });
     }
-
     // Redirigir al login si hay un error 401
     if (error.response?.status === 401) {
+      console.log('Redirigiendo...')
       window.location.href = '/login'; // O usar navigate si tienes acceso a useNavigate
     }
-
+    
+    console.log('Error')
+    
     return Promise.reject(error);
   }
 );

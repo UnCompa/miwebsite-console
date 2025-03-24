@@ -53,8 +53,8 @@ const useAuthStore = create<AuthInterface>()(
       refreshToken: "",
       errors: null,
       data: null,
-
       setCredentials: (data: SetCredentials) => {
+        console.log("la data")
         set({
           token: encryptData(data.token),
           refreshToken: encryptData(data.refreshToken),

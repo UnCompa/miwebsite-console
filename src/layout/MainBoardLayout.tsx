@@ -11,7 +11,7 @@ export default function MainBoardLayout({ children }: { children: ReactNode }) {
   const navigate = useNavigate();
 
   const isAuthenticated = useMemo(() => !!token, [token]);
-
+  console.log('ERROES', errors)
   useEffect(() => {
     if (isAuthenticated && !data) {
       // Solo llamar a getProfile si no hay datos cargados aún
@@ -25,8 +25,8 @@ export default function MainBoardLayout({ children }: { children: ReactNode }) {
     } else if (!isAuthenticated) {
       navigate("/login");
     }
-  }, [isAuthenticated, navigate, data, getProfile]); // Dependencias optimizadas
-  
+  }, [isAuthenticated, navigate, data, getProfile, errors]); // Dependencias optimizadas
+
   return (
     <main className="min-h-screen bg-black text-white flex font-RedHatDisplay">
       <section className="flex flex-col flex-1 max-h-screen">

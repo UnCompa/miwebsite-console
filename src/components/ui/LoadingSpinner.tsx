@@ -1,6 +1,7 @@
 import clsx from "clsx";
 
 const themes = {
+  neutral: "text-gray-200 dark:text-cyan-600 fill-white",
   primary: "text-gray-200 dark:text-cyan-600 fill-white",
   danger: "text-gray-200 dark:text-red-600 fill-white",
   secondary: "text-gray-200 dark:text-blue-600 fill-white",
