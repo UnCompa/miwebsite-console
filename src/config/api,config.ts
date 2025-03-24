@@ -33,10 +33,8 @@ apiBase.interceptors.response.use(
     const originalRequest = error.config;
     const { decryptedAuth, setCredentials } = useAuthStore.getState();
     const dataToken = decryptedAuth();
-    console.debug('REFREZCANDO PETICION...', dataToken)
 
     if (error.response?.status === 401 && !originalRequest._retry) {
-      console.log('ERROR = SETEANDO ERRORES')
       if (!dataToken.refreshToken) {
         setCredentials({ token: "", refreshToken: "", errors: "Sesión expirada, inicia sesión nuevamente." });
         // Redirigir al login si hay un error
@@ -46,7 +44,6 @@ apiBase.interceptors.response.use(
 
       if (!isRefreshing) {
         isRefreshing = true;
-        console.log('ERROR = REFREZCANDO')
         try {
           console.log('Llamando al endpoint...')
           const { data } = await axios.post(`${API_BACKEND_URL}/auth/refreshToken?lang=es`, {

@@ -73,9 +73,6 @@ const Input = forwardRef<HTMLInputElement, InputProps>(({
   // Extraer el color del tema para usarlo en los estados de foco y error
   const inputThemeColor = inputThemes[theme] || 'cyan-500';
 
-  // Verifica el valor de themeColor
-  console.log('Tema Color:', inputThemeColor);
-
   // Determinar el tamaño del input
   const sizeClasses = {
     sm: 'py-1 text-sm',
