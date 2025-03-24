@@ -51,7 +51,7 @@ function CreatePages() {
     setIsModalOpen(true)
     setDataItemDelete(item)
   }
-  const onView = (item: unknown) => {
+  const onView = (item: GetContentSection) => {
     // Lógica para eliminar el video
     console.log(item)
     navigate(`/section/${item.id}`)

@@ -14,10 +14,9 @@ interface ChartsProps {
 
 function formatWeekRange(dateString: string): string {
   const date = new Date(dateString);
-  const options = { month: 'short', day: 'numeric' };
 
-  const startOfWeek = new Intl.DateTimeFormat('en-US', options).format(date);
-  const endOfWeek = new Intl.DateTimeFormat('en-US', options).format(new Date(date.setDate(date.getDate() + 6)));
+  const startOfWeek = new Intl.DateTimeFormat('en-US').format(date);
+  const endOfWeek = new Intl.DateTimeFormat('en-US').format(new Date(date.setDate(date.getDate() + 6)));
 
   return `${startOfWeek} - ${endOfWeek}`;
 }

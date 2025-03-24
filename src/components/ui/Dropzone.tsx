@@ -1,6 +1,6 @@
-import React, { useRef, useState, useCallback } from 'react';
-import { FaUpload, FaFile, FaImage, FaVideo, FaFileAlt, FaTimes, FaCheck, FaExclamationTriangle } from 'react-icons/fa';
 import clsx from 'clsx';
+import React, { useCallback, useRef, useState } from 'react';
+import { FaExclamationTriangle, FaFileAlt, FaImage, FaTimes, FaUpload, FaVideo } from 'react-icons/fa';
 import { Theme, themes } from '../../constants/theme.constants';
 
 export interface DropzoneProps {
@@ -76,7 +76,7 @@ const Dropzone: React.FC<DropzoneProps> = ({
   }, [disabled]);
   
   const validateFiles = useCallback((fileList: File[]): { valid: File[], error: string | null } => {
-    let validFiles: File[] = [];
+    const validFiles: File[] = [];
     let errorMsg: string | null = null;
     
     // Verificar número máximo de archivos
