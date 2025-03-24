@@ -4,17 +4,11 @@ import { FaEye, FaEyeSlash } from "react-icons/fa6";
 import { IoKey, IoPerson } from "react-icons/io5";
 import { useNavigate } from "react-router-dom";
 import { toast, Toaster } from "sonner";
-import LoadingSpinner from "../components/core/LoadingSpinner";
-import useAuthStore from "../store/useAuthStore";
-import "../styles/pattern.css";
 import logo from "../assets/logo.png";
 import unCompa from "../assets/UnCompa.Dev.png";
-import astronautCat from "../assets/astronaut-cat.png";
-import html5Logo from "../assets/html5.png";
-import reactLogo from "../assets/react.png";
-import jsLogo from "../assets/javascript.png";
-import nestLogo from "../assets/nest.png";
-import tailwindLogo from "../assets/tailwind.png";
+import LoadingSpinner from "../components/ui/LoadingSpinner";
+import useAuthStore from "../store/useAuthStore";
+import "../styles/pattern.css";
 
 function LoginPage() {
   const [showPassword, setShowPassword] = useState(false);
@@ -45,27 +39,18 @@ function LoginPage() {
   return (
     <main className="min-h-screen flex justify-center items-center">
       <Toaster theme="dark" richColors />
-      <div className="flex bg-neutral-900 text-white rounded-3xl shadow-2xl overflow-hidden w-[900px]">
-        {/* Left Side - Image & Logos */}
-        <div className="flex flex-col items-center  p-100 px-0 py-0">
-          <div className="relative flex flex-col items-center bg-black">
-            <img
-              src={astronautCat}
-              alt="Astronaut Cat"
-              className="w-100 h-auto px-5 py-5"
-            />
-            <img
-              src={html5Logo}
-              alt="HTML5"
-              className="absolute bottom-[-20px] items-center w-25 h-25"
-            />
-          </div>
-          <div className="flex gap-4 mt-12">
-            <img src={reactLogo} alt="React" className="w-12" />
-            <img src={tailwindLogo} alt="Tailwind" className="w-12" />
-            <img src={jsLogo} alt="JavaScript" className="w-12" />
-            <img src={nestLogo} alt="NestJS" className="w-12" />
-          </div>
+      <section className="bg-gradient-to-br from-neutral-950 to-neutral-900 min-h-max min-w-96 rounded-3xl p-4 flex flex-col gap-4">
+        <h1 className="text-center text-3xl font-light">Iniciar sesión</h1>
+        <div className="flex items-center gap-2 bg-neutral-950 rounded-lg px-4 py-2 focus-within:ring-2 focus-within:ring-cyan-400/40 transition-all shadow-inner text-lg">
+          <IoPerson className="text-cyan-400 text-lg" />
+          <input
+            value={formik.values.username}
+            onChange={formik.handleChange}
+            name="username"
+            type="text"
+            className="bg-transparent flex-1 outline-none text-white placeholder-gray-400"
+            placeholder="Nombre de usuario"
+          />
         </div>
 
         {/* Right Side - Login Form */}
@@ -116,8 +101,8 @@ function LoginPage() {
             </button>
           </form>
         </section>
-      </div>
-    </main>
+      </section>
+  </main>
   );
 }
 
