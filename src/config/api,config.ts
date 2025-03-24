@@ -1,7 +1,7 @@
 import axios from "axios";
 import { API_BACKEND_URL } from "../constants/api.constants";
 import useAuthStore from "../store/useAuthStore";
-
+console.log(API_BACKEND_URL)
 const apiBase = axios.create({
   baseURL: API_BACKEND_URL,
   headers: {
