@@ -50,12 +50,10 @@ function CreateSection({ isOpen, onClose }: IEditSection) {
       formData.append('description', values.description);
       formData.append('lang', values.lang);
 
-      console.log(formData)
       creationMutation.mutate({ data: formData })
     },
   });
   const handleDropFile = (file: File[]) => {
-    console.log('El file', file)
     formik.setFieldValue('imagenUrl', file[0])
   }
   return (

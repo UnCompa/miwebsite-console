@@ -17,7 +17,6 @@ export const contentService = {
     return response.data as GetOnlyContentBySectionId[]
   },
   createSection: async (data: FormData): Promise<GetOnlyContentBySectionId[]> => {
-    console.log('Creando...', data)
     const response = await apiBase.post(`/content/createsection`, data, {
       headers: {
         'Content-Type': 'multipart/form-data',
@@ -26,7 +25,6 @@ export const contentService = {
     return response.data as GetOnlyContentBySectionId[]
   },
   updateSection: async (data: FormData, idSection: string): Promise<GetOnlyContentBySectionId[]> => {
-    console.log('Actualizando...', data)
     const response = await apiBase.put(`/content/updatesection/${idSection}`, data, {
       headers: {
         'Content-Type': 'multipart/form-data',

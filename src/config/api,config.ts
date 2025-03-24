@@ -45,7 +45,6 @@ apiBase.interceptors.response.use(
       if (!isRefreshing) {
         isRefreshing = true;
         try {
-          console.log('Llamando al endpoint...')
           const { data } = await axios.post(`${API_BACKEND_URL}/auth/refreshToken?lang=es`, {
             refreshToken: dataToken.refreshToken,
           });

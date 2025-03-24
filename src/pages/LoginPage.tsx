@@ -23,10 +23,8 @@ function LoginPage() {
       password: ''
     },
     onSubmit: async (values) => {
-      console.log(values)
       setIsLoading(true)
       const res = await signIn(values)
-      console.log(res)
       if (res) {
         navigate('/')
       }

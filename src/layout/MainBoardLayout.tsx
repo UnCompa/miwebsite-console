@@ -11,14 +11,11 @@ export default function MainBoardLayout({ children }: { children: ReactNode }) {
   const navigate = useNavigate();
 
   const isAuthenticated = useMemo(() => !!token, [token]);
-  console.log('ERROES', errors)
   useEffect(() => {
     if (isAuthenticated && !data) {
       // Solo llamar a getProfile si no hay datos cargados aún
       getProfile().then(profile => {
-        console.log('PASE POR AQUI')
         if (!profile || !profile.roles.includes("ADMIN")) {
-          console.log('ENTRE POR AQUI')
           navigate("/login");
         }
       });

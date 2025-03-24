@@ -34,7 +34,6 @@ function ViewContentPages() {
 
           </> : Array.isArray(dataSection?.data) && dataSection?.data.length > 1 ? <section className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4'>
             {dataSection?.data?.map((item) => {
-              console.log(item)
               return <ViewContentCard item={item} />;
             }) ?? []}
           </section> : <NotContent />

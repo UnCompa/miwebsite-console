@@ -54,13 +54,10 @@ function EditSection({ item, isOpen, onClose }: IEditSection) {
       formData.append('lang', values.lang);
 
       const idSection = item ? item?.id : ''
-      console.log(idSection)
-      console.log(formData)
       updateSectionMutation.mutate({ idSection: idSection, data: formData });
     },
   });
   const handleDropFile = (file: File[]) => {
-    console.log('El file', file)
     formik.setFieldValue('imagenUrl', file[0])
   }
   useEffect(() => {

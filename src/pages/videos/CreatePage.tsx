@@ -53,7 +53,6 @@ function CreatePages() {
   }
   const onView = (item: GetContentSection) => {
     // Lógica para eliminar el video
-    console.log(item)
     navigate(`/section/${item.id}`)
   }
 
