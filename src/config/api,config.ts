@@ -1,7 +1,6 @@
 import axios from "axios";
 import { API_BACKEND_URL } from "../constants/api.constants";
 import useAuthStore from "../store/useAuthStore";
-console.log(API_BACKEND_URL)
 const apiBase = axios.create({
   baseURL: API_BACKEND_URL,
   headers: {
@@ -21,7 +20,7 @@ const onRefreshed = (token: string) => {
 apiBase.interceptors.request.use((config) => {
   const { decryptedAuth } = useAuthStore.getState();
   const { token } = decryptedAuth()
-  console.log('REALIZANDO PETICION...', token)
+  console.debug('REALIZANDO PETICION...', token)
   if (token) {
     config.headers.Authorization = `Bearer ${token}`;
   }
@@ -34,7 +33,7 @@ apiBase.interceptors.response.use(
     const originalRequest = error.config;
     const { decryptedAuth, setCredentials } = useAuthStore.getState();
     const dataToken = decryptedAuth();
-    console.log('REFREZCANDO PETICION...', dataToken)
+    console.debug('REFREZCANDO PETICION...', dataToken)
 
     if (error.response?.status === 401 && !originalRequest._retry) {
       console.log('ERROR = SETEANDO ERRORES')
@@ -75,12 +74,8 @@ apiBase.interceptors.response.use(
     }
     // Redirigir al login si hay un error 401
     if (error.response?.status === 401) {
-      console.log('Redirigiendo...')
       window.location.href = '/login'; // O usar navigate si tienes acceso a useNavigate
-    }
-    
-    console.log('Error')
-    
+    }        
     return Promise.reject(error);
   }
 );
