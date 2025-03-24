@@ -7,3 +7,4 @@ export interface GetContentSection {
   lang: string
   isPremium: boolean
 }
+

@@ -53,7 +53,6 @@ const useAuthStore = create<AuthInterface>()(
       refreshToken: "",
       errors: null,
       data: null,
-
       setCredentials: (data: SetCredentials) => {
         set({
           token: encryptData(data.token),
@@ -103,7 +102,6 @@ const useAuthStore = create<AuthInterface>()(
       },
 
       logout: () => {
-        console.log('BORRANDO DATOS')
         set({ token: "", refreshToken: "", data: null, errors: null });
       },
       decryptedAuth: () => {

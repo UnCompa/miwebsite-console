@@ -11,22 +11,19 @@ export default function MainBoardLayout({ children }: { children: ReactNode }) {
   const navigate = useNavigate();
 
   const isAuthenticated = useMemo(() => !!token, [token]);
-
   useEffect(() => {
     if (isAuthenticated && !data) {
       // Solo llamar a getProfile si no hay datos cargados aún
       getProfile().then(profile => {
-        console.log('PASE POR AQUI')
         if (!profile || !profile.roles.includes("ADMIN")) {
-          console.log('ENTRE POR AQUI')
           navigate("/login");
         }
       });
     } else if (!isAuthenticated) {
       navigate("/login");
     }
-  }, [isAuthenticated, navigate, data, getProfile]); // Dependencias optimizadas
-  
+  }, [isAuthenticated, navigate, data, getProfile, errors]); // Dependencias optimizadas
+
   return (
     <main className="min-h-screen bg-black text-white flex font-RedHatDisplay">
       <section className="flex flex-col flex-1 max-h-screen">
