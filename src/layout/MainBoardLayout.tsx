@@ -7,10 +7,11 @@ export default function MainBoardLayout({ children }: { children: ReactNode }) {
   const token = useAuthStore(state => state.token); // Acceder al estado de token
   const getProfile = useAuthStore(state => state.getProfile); // Acceder a la función getProfile
   const data = useAuthStore(state => state.data); // Acceder al estado de los datos del perfil
+  const errors = useAuthStore(state => state.errors); // Acceder al estado de los datos del perfil
   const navigate = useNavigate();
 
   const isAuthenticated = useMemo(() => !!token, [token]);
-
+  console.log('ERROES', errors)
   useEffect(() => {
     if (isAuthenticated && !data) {
       // Solo llamar a getProfile si no hay datos cargados aún
@@ -24,7 +25,7 @@ export default function MainBoardLayout({ children }: { children: ReactNode }) {
     } else if (!isAuthenticated) {
       navigate("/login");
     }
-  }, [isAuthenticated, navigate, data, getProfile]); // Dependencias optimizadas
+  }, [isAuthenticated, navigate, data, getProfile, errors]); // Dependencias optimizadas
 
   return (
     <main className="min-h-screen bg-black text-white flex font-RedHatDisplay">

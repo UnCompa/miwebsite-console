@@ -1,6 +1,7 @@
 import { lazy, Suspense } from "react";
 import MainBoardLayout from "../layout/MainBoardLayout";
-const CreatePages = lazy(() => import('../pages/CreatePage'))
+import ViewContentPages from "../pages/videos/ViewContentPage";
+const CreatePages = lazy(() => import('../pages/videos/CreatePage'))
 const Homepage = lazy(() => import('../pages/Homepage'))
 const LoginPage = lazy(() => import('../pages/LoginPage'))
 
@@ -16,11 +17,21 @@ export const routes = [
     )
   },
   {
-    path: '/create',
+    path: '/section',
     component: () => (
       <MainBoardLayout>
         <Suspense fallback={<div>Loading...</div>}>
           <CreatePages />
+        </Suspense>
+      </MainBoardLayout>
+    )
+  },
+  {
+    path: '/section/:sectionId',
+    component: () => (
+      <MainBoardLayout>
+        <Suspense fallback={<div>Loading...</div>}>
+          <ViewContentPages />
         </Suspense>
       </MainBoardLayout>
     )
