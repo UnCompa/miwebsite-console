@@ -305,7 +305,7 @@ const PieChart: React.FC<PieChartProps> = ({
                 layout="horizontal"
                 verticalAlign="bottom"
                 align="center"
-                formatter={(value, entry, index) => (
+                formatter={(value) => (
                   <span className="text-gray-300">{value}</span>
                 )}
               />

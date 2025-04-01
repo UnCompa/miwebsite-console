@@ -209,7 +209,7 @@ const BarChart: React.FC<BarChartProps> = ({
   }, [timeRange]);
 
   // Función para formatear el tooltip
-  const formatTooltip = (value: number, name: string) => {
+  /* const formatTooltip = (value: number, name: string) => {
     const matchingSeries = series.find(s => s.key === name);
     const displayName = matchingSeries ? matchingSeries.name : name;
 
@@ -218,7 +218,7 @@ const BarChart: React.FC<BarChartProps> = ({
     }
 
     return [value, displayName];
-  };
+  }; */
 
   // Función para personalizar el tooltip
   const CustomTooltip = ({ active, payload, label }: any) => {
@@ -396,7 +396,7 @@ const BarChart: React.FC<BarChartProps> = ({
               />
             )}
 
-            {series.map((s, index) => (
+            {series.map((s) => (
               <Bar
                 key={s.key}
                 dataKey={s.key}

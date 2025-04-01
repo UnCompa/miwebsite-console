@@ -107,15 +107,12 @@ const defaultPresetRanges = (): PresetRange[] => {
 // Componente personalizado para el input del calendario
 const CustomInput = forwardRef<HTMLDivElement, any>(
   (
-    { value, onClick, placeholder, disabled, theme = "primary", error, showClearButton, onClear, rangeDisplayFormat },
+    { value, onClick, placeholder, disabled, theme = "primary", error, showClearButton, onClear },
     ref,
   ) => {
+    console.log(theme)
     // Extraer el color del tema
-    const themeColor =
-      themes[theme]
-        .split(" ")
-        .find((cls) => cls.startsWith("text-"))
-        ?.replace("text-", "") || "cyan-500"
+    const themeColor = "cyan-500"
 
     return (
       <div
@@ -378,7 +375,7 @@ const Calendar: React.FC<CalendarProps> = ({
           startDate={dates[0]}
           endDate={dates[1]}
           onChange={handleDateChange}
-          selectsRange={selectionMode === "range"}
+          //selectsRange={selectionMode === "range"}
           minDate={minDate}
           maxDate={maxDate}
           locale={es}

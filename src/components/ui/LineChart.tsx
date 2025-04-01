@@ -239,7 +239,7 @@ const LineChart: React.FC<LineChartProps> = ({
   }, [timeRange]);
 
   // Función para formatear el tooltip
-  const formatTooltip = (value: number, name: string) => {
+  /* const formatTooltip = (value: number, name: string) => {
     const matchingSeries = series.find(s => s.key === name);
     const displayName = matchingSeries ? matchingSeries.name : name;
 
@@ -248,7 +248,7 @@ const LineChart: React.FC<LineChartProps> = ({
     }
 
     return [value, displayName];
-  };
+  }; */
 
   // Función para personalizar el tooltip
   const CustomTooltip = ({ active, payload, label }: any) => {
@@ -422,7 +422,7 @@ const LineChart: React.FC<LineChartProps> = ({
                 <RechartsReferenceLine
                   key={`ref-line-${index}`}
                   y={line.y}
-                  x={line.x}
+                  //x={line.x}
                   stroke={line.color || '#ff7300'}
                   strokeDasharray="3 3"
                   label={line.label}
@@ -525,7 +525,7 @@ const LineChart: React.FC<LineChartProps> = ({
                 <RechartsReferenceLine
                   key={`ref-line-${index}`}
                   y={line.y}
-                  x={line.x}
+                  //x={line.x}
                   stroke={line.color || '#ff7300'}
                   strokeDasharray="3 3"
                   label={line.label}

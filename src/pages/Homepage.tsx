@@ -44,7 +44,11 @@ const Homepage: React.FC = () => {
       <Calendar
         startDate={dateRange.startDate}
         endDate={dateRange.endDate}
-        onChange={(start, end) => setDateRange({ startDate: start, endDate: end })}
+        onChange={(start, end) => {
+          if (start && end) {
+            setDateRange({ startDate: start, endDate: end })
+          }
+        }}
         selectionMode="range"
         theme="primary"
         showPresetRanges={true}
